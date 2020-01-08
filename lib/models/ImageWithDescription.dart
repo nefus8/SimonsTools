@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ImageWithDescription {
   String imageUrl;
@@ -7,11 +8,17 @@ class ImageWithDescription {
   String title;
   String description;
 
+  Color imageTextColor, titleColor, descriptionColor, backgroundColor;
+
   ImageWithDescription({
     @required this.imageUrl,
-    this.imageTitle = '',
-    this.imageInfo = '',
     @required this.title,
     @required this.description,
+    this.imageTitle = '',
+    this.imageInfo = '',
+    this.imageTextColor = Colors.white,
+    this.titleColor = Colors.black,
+    this.descriptionColor = Colors.grey,
+    this.backgroundColor = Colors.white,
   });
 }

@@ -5,26 +5,27 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
   List<ImageWithDescription> imageWithDescriptionList;
   Function routingFunction;
   bool isImageAnAsset;
-  double width;
+  double width, height;
 
   ImageWithDescriptionCarousel({
     @required this.imageWithDescriptionList,
     this.routingFunction,
     this.isImageAnAsset = true,
-    this.width = 210,
+    this.width = 210.0,
+    this.height = 300.0,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300.0,
+      height: height,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: imageWithDescriptionList.length,
         itemBuilder: (BuildContext context, int index) {
           ImageWithDescription iwd = imageWithDescriptionList[index];
           return GestureDetector(
-            onTap:() => routingFunction != null ? routingFunction() : print("null"),
+            onTap:() => routingFunction != null ? routingFunction() : {},
             child: Container(
               margin: EdgeInsets.all(10.0),
               width: width,
@@ -34,10 +35,10 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
                   Positioned(
                     bottom: 10.0,
                     child: Container(
-                      height: 120.0,
+                      height: (height - (0.6*height)),
                       width: (width - (0.05*width)),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: iwd.backgroundColor,
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Padding(
@@ -51,10 +52,11 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
                                   fontSize: 22.0,
                                   fontWeight: FontWeight.w600,
                                   letterSpacing: 1.2,
+                                  color: iwd.titleColor
                                 )),
                             Text(
                               iwd.description,
-                              style: TextStyle(color: Colors.grey),
+                              style: TextStyle(color: iwd.descriptionColor),
                             )
                           ],
                         ),
@@ -74,7 +76,7 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20.0),
                             child: Image(
-                              height: 180.0,
+                              height: (height - (height*0.4)),
                               width: (width - (width*0.15)),
                               image: isImageAnAsset ? AssetImage(
                                 iwd.imageUrl,
@@ -91,11 +93,11 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
                             children: <Widget>[
                               Text(
                                 iwd.imageTitle,
-                                style: TextStyle(color: Colors.white, fontSize: 24.0, fontWeight: FontWeight.w600),
+                                style: TextStyle(color: iwd.imageTextColor, fontSize: 24.0, fontWeight: FontWeight.w600),
                               ),
                               Text(
                                 iwd.imageInfo,
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: iwd.imageTextColor),
                               )
                             ],
                           ),
