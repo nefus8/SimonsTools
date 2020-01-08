@@ -5,8 +5,14 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
   List<ImageWithDescription> imageWithDescriptionList;
   Function routingFunction;
   bool isImageAnAsset;
+  int width;
 
-  ImageWithDescriptionCarousel({this.imageWithDescriptionList, this.routingFunction, this.isImageAnAsset = true});
+  ImageWithDescriptionCarousel({
+    @required this.imageWithDescriptionList,
+    this.routingFunction,
+    this.isImageAnAsset = true,
+    this.width = 210,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,7 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
             onTap:() => routingFunction != null ? routingFunction() : print("null"),
             child: Container(
               margin: EdgeInsets.all(10.0),
-              width: 210.0,
+              width: width,
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: <Widget>[
@@ -29,7 +35,7 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
                     bottom: 10.0,
                     child: Container(
                       height: 120.0,
-                      width: 200.0,
+                      width: (width - (0.05*width)),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10.0),
@@ -69,7 +75,7 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.0),
                             child: Image(
                               height: 180.0,
-                              width: 180.0,
+                              width: (width - (width*0.15)),
                               image: isImageAnAsset ? AssetImage(
                                 iwd.imageUrl,
                               ) : NetworkImage(iwd.imageUrl),
