@@ -35,7 +35,7 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
                   Positioned(
                     bottom: 10.0,
                     child: Container(
-                      height: (height - (0.6*height)),
+                      height: 120,
                       width: (width - (0.05*width)),
                       decoration: BoxDecoration(
                         color: iwd.backgroundColor,
