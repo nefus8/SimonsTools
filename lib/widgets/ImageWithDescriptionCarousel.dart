@@ -76,7 +76,7 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20.0),
                             child: Image(
-                              height: (height - (height*0.4)),
+                              height: (height-120.0),
                               width: (width - (width*0.15)),
                               image: isImageAnAsset ? AssetImage(
                                 iwd.imageUrl,
