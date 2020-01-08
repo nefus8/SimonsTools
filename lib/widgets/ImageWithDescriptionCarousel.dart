@@ -5,7 +5,7 @@ class ImageWithDescriptionCarousel extends StatelessWidget {
   List<ImageWithDescription> imageWithDescriptionList;
   Function routingFunction;
   bool isImageAnAsset;
-  int width;
+  double width;
 
   ImageWithDescriptionCarousel({
     @required this.imageWithDescriptionList,
