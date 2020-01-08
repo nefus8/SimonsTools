@@ -5,7 +5,7 @@ class TestWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-      child: Text("Hey !"),
+      child: Text("Hey !", style: TextStyle(color: Colors.red),),
     ));
   }
 }
