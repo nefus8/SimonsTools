@@ -1,5 +1,3 @@
-library simons_tools;
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
