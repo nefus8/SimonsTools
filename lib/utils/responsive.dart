@@ -8,7 +8,7 @@ class Responsive {
 
   static double _getRatio(double shortestSide) {
     if (shortestSide <= 650) //iphone 5s
-      return 0.6;
+      return 0.75;
     if (shortestSide > 650 && shortestSide <= 1200) //iphone X
       return 1;
     if (shortestSide > 1200 && shortestSide <= 1530)
