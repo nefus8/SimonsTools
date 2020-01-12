@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 
 class Responsive {
   static double getResponsiveSize(double size, BuildContext context) {
-    double shortestSide = MediaQuery.of(context).size.shortestSide;
-    return size * _getRatio(shortestSide*3);
+    double shortestSide = MediaQuery.of(context).size.shortestSide * MediaQuery.of(context).devicePixelRatio;
+    return size * _getRatio(shortestSide);
   }
 
   static double _getRatio(double shortestSide) {
