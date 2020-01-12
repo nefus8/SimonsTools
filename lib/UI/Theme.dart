@@ -65,4 +65,7 @@ ThemeData easyThemeLight2 = ThemeData(
         ),
         body1: TextStyle(
           color: Colors.white,
-        )));
+        )
+    ),
+    buttonColor: Colors.blueAccent,
+);
