@@ -10,6 +10,7 @@ class TexturedTile extends StatelessWidget {
   final double left, bottom;
   final String text;
   final TextStyle style;
+  final bool boxShadow;
 
   TexturedTile({
     @required this.text,
@@ -27,6 +28,7 @@ class TexturedTile extends StatelessWidget {
       fontWeight: FontWeight.bold,
       fontSize: 18,
     ),
+    this.boxShadow = true,
   });
 
   @override
@@ -67,6 +69,11 @@ class TexturedTile extends StatelessWidget {
               begin: begin,
               end: end,
             ) : null,
+            boxShadow: boxShadow ? [BoxShadow(
+              color: colors[0],
+              offset: Offset(0.0, 5.0),
+              blurRadius: 10.0
+            )]:null,
           ),
         ),
         Positioned(
