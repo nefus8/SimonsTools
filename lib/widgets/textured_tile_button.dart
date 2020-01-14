@@ -68,7 +68,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
       transform: Matrix4.translationValues(0, _y, 0),
       height: _height,
       child: GestureDetector(
-        onTapDown: (_) => setState(() {_isEnabled = true;}),
+        onTapDown: (_) => _onTapUp(),
         onTapUp: (_) => _onPressed(),
         onTapCancel: () => setState(() {_isEnabled = false;}),
         child: Stack(
@@ -128,8 +128,8 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
   void _onPressed() {
     setState(() {
       _isEnabled = false;
-      _height = 190;
-      _y = 7;
+      _height = 200;
+      _y = 0;
     });
     widget.onPressed();
   }
@@ -137,8 +137,8 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
   void _onTapUp() {
     setState(() {
       _isEnabled = true;
-      _height = 200;
-      _y = 0;
+      _height = 190;
+      _y = 7;
     });
   }
 }
