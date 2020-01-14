@@ -54,7 +54,7 @@ class TexturedTile extends StatelessWidget {
             borderRadius: _radius,
             boxShadow: boxShadow ? [BoxShadow(
               color: colors[0],
-              offset: Offset(0.0, 10.0),
+              offset: Offset(0.0, 15.0),
               blurRadius: 10.0,
               spreadRadius: -5.0
           )]:null,
