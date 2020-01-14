@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TexturedTileButton extends StatefulWidget {
-  final double width, height;
   final double borderRadius;
   final String imageUrl;
   final List<Color> colors;
@@ -18,8 +17,6 @@ class TexturedTileButton extends StatefulWidget {
     @required this.text,
     @required this.imageUrl,
     @required this.onPressed,
-    this.width = 200,
-    this.height = 200,
     this.borderRadius = 30,
     this.colors = const [Color(0xCBfebea9), Color(0xBBff9d98)],
     this.begin = Alignment.topRight,
@@ -41,14 +38,8 @@ class TexturedTileButton extends StatefulWidget {
 
 class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProviderStateMixin {
   bool _isEnabled = false;
-  double _height, _y = 0;
+  double _y = 0;
   bool _showShadow = true;
-
-  @override
-  void initState() {
-    _height = widget.height;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +58,6 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
     return AnimatedContainer(
       duration: Duration(milliseconds: 150),
       transform: Matrix4.translationValues(0, _y, 0),
-      height: _height,
       child: GestureDetector(
         onTapDown: (_) => _onTapDown(),
         onTapUp: (_) => _onTapUp(true),
@@ -75,8 +65,6 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
         child: Stack(
           children: <Widget>[
             Container(
-              height: _height,
-              width: widget.width,
               decoration: BoxDecoration(
                 borderRadius: _radius,
                 boxShadow: (widget.boxShadow && _showShadow) ? [BoxShadow(
@@ -92,8 +80,6 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
               ),
             ),
             Container(
-              height: _height,
-              width: widget.width,
               decoration: BoxDecoration(
                 borderRadius: _radius,
                 color: widget.colors.length == 1 ? widget.colors[0] : null,
@@ -105,8 +91,6 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
               ),
             ),
             Container(
-              height: _height,
-              width: widget.width,
               decoration: BoxDecoration(
                 borderRadius: _radius,
                 color: _isEnabled ? widget.onPressColor : null,
@@ -129,7 +113,6 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
   void _onTapUp(bool pressed) {
     setState(() {
       _isEnabled = false;
-      _height = widget.height;
       _y = 0;
       _showShadow = true;
     });
@@ -140,7 +123,6 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
   void _onTapDown() {
     setState(() {
       _isEnabled = true;
-      _height = 190;
       _y = 7;
       _showShadow = false;
     });
