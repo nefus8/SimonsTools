@@ -47,8 +47,8 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
   initState() {
     super.initState();
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 2000), vsync: this, value: 0.1);
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.bounceInOut);
+        duration: const Duration(milliseconds: 1000), vsync: this, value: 0.8);
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.linear);
 
     _controller.forward();
   }
