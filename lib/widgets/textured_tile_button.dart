@@ -67,7 +67,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
         child: Stack(
           children: <Widget>[
             Container(
-              height: 12000,
+              height: 800,
               decoration: BoxDecoration(
                 borderRadius: _radius,
                 boxShadow: (widget.boxShadow && _showShadow) ? [BoxShadow(
