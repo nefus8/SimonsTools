@@ -58,7 +58,12 @@ class _TexturedTileButtonState extends State<TexturedTileButton> {
 
     return GestureDetector(
       onTapDown: (_) => setState(() {_isEnabled = true;}),
-      onTapUp: (_) => setState(() {_isEnabled = false; widget.onPressed;}),
+      onTapUp: (_) {
+        setState(() {
+          _isEnabled = false;
+        });
+        widget.onPressed;
+        },
       onTapCancel: () => setState(() {_isEnabled = false;}),
       child: Stack(
         children: <Widget>[
