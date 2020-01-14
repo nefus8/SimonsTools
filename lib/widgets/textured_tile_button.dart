@@ -64,7 +64,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
     }
 
     return AnimatedContainer(
-      duration: Duration(milliseconds: 250),
+      duration: Duration(milliseconds: 150),
       transform: Matrix4.translationValues(0, _y, 0),
       height: _height,
       child: GestureDetector(
@@ -137,7 +137,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
   void _onTapUp() {
     setState(() {
       _isEnabled = true;
-      _height = 190;
+      _height = 150;
       _y = 7;
     });
   }
