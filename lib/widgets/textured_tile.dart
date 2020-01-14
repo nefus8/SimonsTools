@@ -38,13 +38,14 @@ class TexturedTile extends StatelessWidget {
     } else {
       _image = Image.asset(
         imageUrl,
-        fit: BoxFit.fitHeight,
+        fit: BoxFit.cover,
       );
     }
 
     return Stack(
       children: <Widget>[
         Container(
+          height: 1000,
           decoration: BoxDecoration(
             borderRadius: _radius,
             boxShadow: boxShadow
