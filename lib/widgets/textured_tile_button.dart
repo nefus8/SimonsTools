@@ -42,6 +42,7 @@ class TexturedTileButton extends StatefulWidget {
 class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProviderStateMixin {
   bool _isEnabled = false;
   double _height, _y = 0;
+  bool _showShadow = true;
 
   @override
   void initState() {
@@ -68,9 +69,9 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
       transform: Matrix4.translationValues(0, _y, 0),
       height: _height,
       child: GestureDetector(
-        onTapDown: (_) => _onTapUp(),
-        onTapUp: (_) => _onPressed(true),
-        onTapCancel: () => _onPressed(false),
+        onTapDown: (_) => _onTapDown(),
+        onTapUp: (_) => _onTapUp(true),
+        onTapCancel: () => _onTapUp(false),
         child: Stack(
           children: <Widget>[
             Container(
@@ -78,7 +79,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
               width: widget.width,
               decoration: BoxDecoration(
                 borderRadius: _radius,
-                boxShadow: widget.boxShadow ? [BoxShadow(
+                boxShadow: (widget.boxShadow && _showShadow) ? [BoxShadow(
                   color: widget.colors[0],
                   offset: Offset(0.0, 13.0),
                   blurRadius: 10.0,
@@ -125,21 +126,23 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
     );
   }
 
-  void _onPressed(bool pressed) {
+  void _onTapUp(bool pressed) {
     setState(() {
       _isEnabled = false;
       _height = widget.height;
       _y = 0;
+      _showShadow = true;
     });
     if (pressed)
       widget.onPressed();
   }
 
-  void _onTapUp() {
+  void _onTapDown() {
     setState(() {
       _isEnabled = true;
       _height = 190;
       _y = 7;
+      _showShadow = false;
     });
   }
 }
