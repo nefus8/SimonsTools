@@ -67,7 +67,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
         child: Stack(
           children: <Widget>[
             Container(
-              height: 2000,
+              height: 2000, //high number to get the image to feet the gridview container
               decoration: BoxDecoration(
                 borderRadius: _radius,
                 boxShadow: (widget.boxShadow && _showShadow) ? [BoxShadow(
