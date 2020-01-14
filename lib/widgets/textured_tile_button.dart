@@ -128,7 +128,8 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
   void _onPressed() {
     setState(() {
       _isEnabled = false;
-      _height = 200;
+      _height = widget.height;
+
       _y = 0;
     });
     widget.onPressed();
@@ -137,7 +138,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
   void _onTapUp() {
     setState(() {
       _isEnabled = true;
-      _height = 150;
+      _height = 190;
       _y = 7;
     });
   }
