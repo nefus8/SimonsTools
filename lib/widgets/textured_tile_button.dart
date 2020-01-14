@@ -93,7 +93,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> {
             width: widget.width,
             decoration: BoxDecoration(
               borderRadius: _radius,
-              color: _isEnabled ? Color(0x99000000) : null,
+              color: _isEnabled ? Color(0x77000000) : null,
             ),
           ),
           Positioned(
