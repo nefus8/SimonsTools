@@ -41,21 +41,37 @@ class TexturedTileButton extends StatefulWidget {
 
 class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProviderStateMixin {
   bool _isEnabled = false;
-  AnimationController _controller;
+  AnimationController _animationController;
   Animation<double> _animation;
 
-  initState() {
+  @override
+  void initState() {
     super.initState();
-    _controller = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this, value: 0.8);
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.linear);
+    _animationController = AnimationController(
+        vsync: this,
+        duration: Duration(
+            seconds:
+            2)); //specify the duration for the animation & include `this` for the vsyc
+    _animation = Tween<double>(begin: 1.0, end: 2.5).animate(
+        _animationController); //use Tween animation here, to animate between the values of 1.0 & 2.5.
 
-    _controller.forward();
+    _animation.addListener(() {
+      //here, a listener that rebuilds our widget tree when animation.value chnages
+      setState(() {});
+    });
+
+    _animation.addStatusListener((status) {
+      //AnimationStatus gives the current status of our animation, we want to go back to its previous state after completing its animation
+      if (status == AnimationStatus.completed) {
+        _animationController
+            .reverse(); //reverse the animation back here if its completed
+      }
+    });
   }
 
   @override
   dispose() {
-    _controller.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -73,63 +89,59 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
       );
     }
 
-    return ScaleTransition(
-      scale: _animation,
-      alignment: Alignment.bottomCenter,
-      child: GestureDetector(
-        onTapDown: (_) => setState(() {_isEnabled = true; _controller.forward();}),
-        onTapUp: (_) => _onPressed(),
-        onTapCancel: () => setState(() {_isEnabled = false;}),
-        child: Stack(
-          children: <Widget>[
-            Container(
-              height: widget.height,
-              width: widget.width,
-              decoration: BoxDecoration(
-                borderRadius: _radius,
-                boxShadow: widget.boxShadow ? [BoxShadow(
-                  color: widget.colors[0],
-                  offset: Offset(0.0, 13.0),
-                  blurRadius: 10.0,
-                  spreadRadius: -5.0
-              )]:null,
-              ),
-              child: ClipRRect(
-                borderRadius: _radius,
-                child: _image,
-              ),
+    return GestureDetector(
+      onTapDown: (_) => setState(() {_isEnabled = true; _animationController.forward();}),
+      onTapUp: (_) => _onPressed(),
+      onTapCancel: () => setState(() {_isEnabled = false;}),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            height: widget.height,
+            width: widget.width,
+            decoration: BoxDecoration(
+              borderRadius: _radius,
+              boxShadow: widget.boxShadow ? [BoxShadow(
+                color: widget.colors[0],
+                offset: Offset(0.0, 13.0),
+                blurRadius: 10.0,
+                spreadRadius: -5.0
+            )]:null,
             ),
-            Container(
-              height: widget.height,
-              width: widget.width,
-              decoration: BoxDecoration(
-                borderRadius: _radius,
-                color: widget.colors.length == 1 ? widget.colors[0] : null,
-                gradient: widget.colors.length > 1 ? LinearGradient(
-                  colors: widget.colors,
-                  begin: widget.begin,
-                  end: widget.end,
-                ) : null,
-              ),
+            child: ClipRRect(
+              borderRadius: _radius,
+              child: _image,
             ),
-            Container(
-              height: widget.height,
-              width: widget.width,
-              decoration: BoxDecoration(
-                borderRadius: _radius,
-                color: _isEnabled ? widget.onPressColor : null,
-              ),
+          ),
+          Container(
+            height: widget.height,
+            width: widget.width,
+            decoration: BoxDecoration(
+              borderRadius: _radius,
+              color: widget.colors.length == 1 ? widget.colors[0] : null,
+              gradient: widget.colors.length > 1 ? LinearGradient(
+                colors: widget.colors,
+                begin: widget.begin,
+                end: widget.end,
+              ) : null,
             ),
-            Positioned(
-              left: widget.left,
-              bottom: widget.bottom,
-              child: Text(
-                widget.text,
-                style: widget.style,
-              ),
-            )
-          ],
-        ),
+          ),
+          Container(
+            height: widget.height,
+            width: widget.width,
+            decoration: BoxDecoration(
+              borderRadius: _radius,
+              color: _isEnabled ? widget.onPressColor : null,
+            ),
+          ),
+          Positioned(
+            left: widget.left,
+            bottom: widget.bottom,
+            child: Text(
+              widget.text,
+              style: widget.style,
+            ),
+          )
+        ],
       ),
     );
   }
