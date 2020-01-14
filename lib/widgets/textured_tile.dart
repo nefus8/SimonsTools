@@ -52,6 +52,11 @@ class TexturedTile extends StatelessWidget {
           width: width,
           decoration: BoxDecoration(
             borderRadius: _radius,
+            boxShadow: boxShadow ? [BoxShadow(
+              color: colors[0],
+              offset: Offset(0.0, 5.0),
+              blurRadius: 10.0
+          )]:null,
           ),
           child: ClipRRect(
             borderRadius: _radius,
@@ -69,11 +74,6 @@ class TexturedTile extends StatelessWidget {
               begin: begin,
               end: end,
             ) : null,
-            boxShadow: boxShadow ? [BoxShadow(
-              color: colors[0],
-              offset: Offset(0.0, 5.0),
-              blurRadius: 10.0
-            )]:null,
           ),
         ),
         Positioned(
