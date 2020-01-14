@@ -69,8 +69,8 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
       height: _height,
       child: GestureDetector(
         onTapDown: (_) => _onTapUp(),
-        onTapUp: (_) => _onPressed(),
-        onTapCancel: () => setState(() {_isEnabled = false;}),
+        onTapUp: (_) => _onPressed(true),
+        onTapCancel: () => _onPressed(false),
         child: Stack(
           children: <Widget>[
             Container(
@@ -125,14 +125,14 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
     );
   }
 
-  void _onPressed() {
+  void _onPressed(bool pressed) {
     setState(() {
       _isEnabled = false;
       _height = widget.height;
-
       _y = 0;
     });
-    widget.onPressed();
+    if (pressed)
+      widget.onPressed();
   }
 
   void _onTapUp() {
