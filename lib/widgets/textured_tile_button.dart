@@ -41,7 +41,13 @@ class TexturedTileButton extends StatefulWidget {
 
 class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProviderStateMixin {
   bool _isEnabled = false;
-  double _height = 200, _y = 0;
+  double _height, _y = 0;
+
+  @override
+  void initState() {
+    _height = widget.height;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +74,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
         child: Stack(
           children: <Widget>[
             Container(
-              height: widget.height,
+              height: _height,
               width: widget.width,
               decoration: BoxDecoration(
                 borderRadius: _radius,
@@ -85,7 +91,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
               ),
             ),
             Container(
-              height: widget.height,
+              height: _height,
               width: widget.width,
               decoration: BoxDecoration(
                 borderRadius: _radius,
@@ -98,7 +104,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
               ),
             ),
             Container(
-              height: widget.height,
+              height: _height,
               width: widget.width,
               decoration: BoxDecoration(
                 borderRadius: _radius,
@@ -122,8 +128,8 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
   void _onPressed() {
     setState(() {
       _isEnabled = false;
-      _height = 180;
-      _y = 20;
+      _height = 190;
+      _y = 7;
     });
     widget.onPressed();
   }
