@@ -38,7 +38,7 @@ class TexturedTile extends StatelessWidget {
     } else {
       _image = Image.asset(
         imageUrl,
-        fit: BoxFit.cover,
+        fit: BoxFit.fitHeight,
       );
     }
 
