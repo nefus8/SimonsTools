@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TexturedTile extends StatelessWidget {
-  final double width, height;
   final double borderRadius;
   final String imageUrl;
   final List<Color> colors;
@@ -15,8 +14,6 @@ class TexturedTile extends StatelessWidget {
   TexturedTile({
     @required this.text,
     @required this.imageUrl,
-    this.width = 200,
-    this.height = 200,
     this.borderRadius = 30,
     this.colors = const [Color(0xCBfebea9), Color(0xBBff9d98)],
     this.begin = Alignment.topRight,
@@ -48,8 +45,6 @@ class TexturedTile extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
-          height: height,
-          width: width,
           decoration: BoxDecoration(
             borderRadius: _radius,
             boxShadow: boxShadow ? [BoxShadow(
@@ -65,8 +60,6 @@ class TexturedTile extends StatelessWidget {
           ),
         ),
         Container(
-          height: height,
-          width: width,
           decoration: BoxDecoration(
             borderRadius: _radius,
             color: colors.length == 1 ? colors[0] : null,

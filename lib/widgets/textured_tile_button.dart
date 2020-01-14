@@ -47,7 +47,9 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
     Image _image;
 
     if (widget.imageUrl.startsWith("http")) {
-      _image = Image.network(widget.imageUrl, fit: BoxFit.cover);
+      _image = Image.network(
+          widget.imageUrl,
+          fit: BoxFit.cover);
     } else {
       _image = Image.asset(
         widget.imageUrl,
