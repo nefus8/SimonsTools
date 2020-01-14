@@ -11,10 +11,13 @@ class TexturedTileButton extends StatefulWidget {
   final String text;
   final TextStyle style;
   final bool boxShadow;
+  final Color onPressColor;
+  final Function onPressed;
 
   TexturedTileButton({
     @required this.text,
     @required this.imageUrl,
+    @required this.onPressed,
     this.width = 200,
     this.height = 200,
     this.borderRadius = 30,
@@ -29,6 +32,7 @@ class TexturedTileButton extends StatefulWidget {
       fontSize: 18,
     ),
     this.boxShadow = true,
+    this.onPressColor = const Color(0x66000000),
   });
 
   @override
@@ -54,7 +58,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> {
 
     return GestureDetector(
       onTapDown: (_) => setState(() {_isEnabled = true;}),
-      onTapUp: (_) => setState(() {_isEnabled = false;}),
+      onTapUp: (_) => setState(() {_isEnabled = false; widget.onPressed;}),
       onTapCancel: () => setState(() {_isEnabled = false;}),
       child: Stack(
         children: <Widget>[
@@ -93,7 +97,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> {
             width: widget.width,
             decoration: BoxDecoration(
               borderRadius: _radius,
-              color: _isEnabled ? Color(0x77000000) : null,
+              color: _isEnabled ? widget.onPressColor : null,
             ),
           ),
           Positioned(
