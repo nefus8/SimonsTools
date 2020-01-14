@@ -41,7 +41,7 @@ class TexturedTileButton extends StatefulWidget {
 
 class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProviderStateMixin {
   bool _isEnabled = false;
-  double _height = 200, x = 0;
+  double _height = 200, _y = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
 
     return AnimatedContainer(
       duration: Duration(milliseconds: 250),
-      transform: Matrix4.translationValues(x, 0, 0),
+      transform: Matrix4.translationValues(0, _y, 0),
       height: _height,
       child: GestureDetector(
         onTapDown: (_) => setState(() {_isEnabled = true;}),
@@ -122,9 +122,17 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
   void _onPressed() {
     setState(() {
       _isEnabled = false;
-      _height = 190;
-      x = 10;
+      _height = 180;
+      _y = 20;
     });
     widget.onPressed();
+  }
+
+  void _onTapUp() {
+    setState(() {
+      _isEnabled = true;
+      _height = 200;
+      _y = 0;
+    });
   }
 }
