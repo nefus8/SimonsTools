@@ -16,7 +16,7 @@ class TexturedTile extends StatelessWidget {
     this.width = 200,
     this.height = 200,
     this.borderRadius = 30,
-    this.imageUrl = 'assets/images/wood1.jpg',
+    this.imageUrl = 'lib/assets/images/wood1.jpg',
     this.colors = const [Color(0xCBfebea9), Color(0xBBff9d98)],
     this.begin = Alignment.topRight,
     this.end = Alignment.bottomLeft,
