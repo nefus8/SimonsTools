@@ -55,7 +55,8 @@ class TexturedTile extends StatelessWidget {
             boxShadow: boxShadow ? [BoxShadow(
               color: colors[0],
               offset: Offset(0.0, 5.0),
-              blurRadius: 10.0
+              blurRadius: 10.0,
+              spreadRadius: -5.0
           )]:null,
           ),
           child: ClipRRect(
