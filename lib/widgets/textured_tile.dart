@@ -38,7 +38,7 @@ class TexturedTile extends StatelessWidget {
     } else {
       _image = Image.asset(
         imageUrl,
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
       );
     }
 
@@ -47,12 +47,9 @@ class TexturedTile extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: _radius,
-            boxShadow: boxShadow ? [BoxShadow(
-              color: colors[0],
-              offset: Offset(0.0, 13.0),
-              blurRadius: 10.0,
-              spreadRadius: -5.0
-          )]:null,
+            boxShadow: boxShadow
+                ? [BoxShadow(color: colors[0], offset: Offset(0.0, 13.0), blurRadius: 10.0, spreadRadius: -5.0)]
+                : null,
           ),
           child: ClipRRect(
             borderRadius: _radius,
@@ -63,11 +60,13 @@ class TexturedTile extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: _radius,
             color: colors.length == 1 ? colors[0] : null,
-            gradient: colors.length > 1 ? LinearGradient(
-              colors: colors,
-              begin: begin,
-              end: end,
-            ) : null,
+            gradient: colors.length > 1
+                ? LinearGradient(
+                    colors: colors,
+                    begin: begin,
+                    end: end,
+                  )
+                : null,
           ),
         ),
         Positioned(
