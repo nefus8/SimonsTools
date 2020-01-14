@@ -39,8 +39,23 @@ class TexturedTileButton extends StatefulWidget {
   _TexturedTileButtonState createState() => _TexturedTileButtonState();
 }
 
-class _TexturedTileButtonState extends State<TexturedTileButton> {
+class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProviderStateMixin {
   bool _isEnabled = false;
+  AnimationController _controller;
+  Animation<double> _animation;
+
+  @override
+  void initState() {
+    _controller = AnimationController(duration: const Duration(milliseconds: 2000), vsync: this, value: 0.1);
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.bounceInOut);
+    super.initState();
+  }
+
+  @override
+  dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,59 +71,63 @@ class _TexturedTileButtonState extends State<TexturedTileButton> {
       );
     }
 
-    return GestureDetector(
-      onTapDown: (_) => setState(() {_isEnabled = true;}),
-      onTapUp: (_) => _onPressed(),
-      onTapCancel: () => setState(() {_isEnabled = false;}),
-      child: Stack(
-        children: <Widget>[
-          Container(
-            height: widget.height,
-            width: widget.width,
-            decoration: BoxDecoration(
-              borderRadius: _radius,
-              boxShadow: widget.boxShadow ? [BoxShadow(
-                color: widget.colors[0],
-                offset: Offset(0.0, 13.0),
-                blurRadius: 10.0,
-                spreadRadius: -5.0
-            )]:null,
+    return ScaleTransition(
+      scale: _animation,
+      alignment: Alignment.bottomCenter,
+      child: GestureDetector(
+        onTapDown: (_) => setState(() {_isEnabled = true; _controller.forward();}),
+        onTapUp: (_) => _onPressed(),
+        onTapCancel: () => setState(() {_isEnabled = false;}),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              height: widget.height,
+              width: widget.width,
+              decoration: BoxDecoration(
+                borderRadius: _radius,
+                boxShadow: widget.boxShadow ? [BoxShadow(
+                  color: widget.colors[0],
+                  offset: Offset(0.0, 13.0),
+                  blurRadius: 10.0,
+                  spreadRadius: -5.0
+              )]:null,
+              ),
+              child: ClipRRect(
+                borderRadius: _radius,
+                child: _image,
+              ),
             ),
-            child: ClipRRect(
-              borderRadius: _radius,
-              child: _image,
+            Container(
+              height: widget.height,
+              width: widget.width,
+              decoration: BoxDecoration(
+                borderRadius: _radius,
+                color: widget.colors.length == 1 ? widget.colors[0] : null,
+                gradient: widget.colors.length > 1 ? LinearGradient(
+                  colors: widget.colors,
+                  begin: widget.begin,
+                  end: widget.end,
+                ) : null,
+              ),
             ),
-          ),
-          Container(
-            height: widget.height,
-            width: widget.width,
-            decoration: BoxDecoration(
-              borderRadius: _radius,
-              color: widget.colors.length == 1 ? widget.colors[0] : null,
-              gradient: widget.colors.length > 1 ? LinearGradient(
-                colors: widget.colors,
-                begin: widget.begin,
-                end: widget.end,
-              ) : null,
+            Container(
+              height: widget.height,
+              width: widget.width,
+              decoration: BoxDecoration(
+                borderRadius: _radius,
+                color: _isEnabled ? widget.onPressColor : null,
+              ),
             ),
-          ),
-          Container(
-            height: widget.height,
-            width: widget.width,
-            decoration: BoxDecoration(
-              borderRadius: _radius,
-              color: _isEnabled ? widget.onPressColor : null,
-            ),
-          ),
-          Positioned(
-            left: widget.left,
-            bottom: widget.bottom,
-            child: Text(
-              widget.text,
-              style: widget.style,
-            ),
-          )
-        ],
+            Positioned(
+              left: widget.left,
+              bottom: widget.bottom,
+              child: Text(
+                widget.text,
+                style: widget.style,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
