@@ -1,6 +1,6 @@
 name: simons_tools
 description: Pleins de petits tools utils pour les apps
-version: 0.1.1
+version: 0.3.1
 author: Simon Braillard
 homepage:
 
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  shared_preferences: ^0.5.6
 
 dev_dependencies:
   flutter_test:
