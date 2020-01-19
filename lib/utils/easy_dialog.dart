@@ -71,7 +71,7 @@ class EasyDialog {
             actions: <Widget>[
               CupertinoDialogAction(
                 child: Text(textButton1, textAlign: TextAlign.justify,),
-                onPressed: onPressedButton1 != null ? onPressedButton1 : () => Navigator.of(context).pop(),
+                onPressed: onPressedButton1,
               ),
               CupertinoDialogAction(
                 child: Text(textButton2, textAlign: TextAlign.justify,),
