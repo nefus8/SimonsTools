@@ -12,6 +12,7 @@ class TexturedTileButton extends StatefulWidget {
   final bool boxShadow;
   final Color onPressColor;
   final Function onPressed;
+  final double width, height;
 
   TexturedTileButton({
     @required this.text,
@@ -30,6 +31,8 @@ class TexturedTileButton extends StatefulWidget {
     ),
     this.boxShadow = true,
     this.onPressColor = const Color(0x66000000),
+    this.width,
+    this.height,
   });
 
   @override
@@ -58,7 +61,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
     }
 
     return AnimatedContainer(
-      duration: Duration(milliseconds: 150),
+      duration: Duration(milliseconds: 50),
       transform: Matrix4.translationValues(0, _y, 0),
       child: GestureDetector(
         onTapDown: (_) => _onTapDown(),
@@ -67,7 +70,8 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
         child: Stack(
           children: <Widget>[
             Container(
-              height: 2000, //high number to get the image to feet the gridview container
+              height: widget.height == null ? double.infinity : widget.height,
+              width: widget.width,
               decoration: BoxDecoration(
                 borderRadius: _radius,
                 boxShadow: (widget.boxShadow && _showShadow) ? [BoxShadow(
@@ -83,6 +87,8 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
               ),
             ),
             Container(
+              height: widget.height,
+              width: widget.width,
               decoration: BoxDecoration(
                 borderRadius: _radius,
                 color: widget.colors.length == 1 ? widget.colors[0] : null,
@@ -94,6 +100,8 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
               ),
             ),
             Container(
+              height: widget.height,
+              width: widget.width,
               decoration: BoxDecoration(
                 borderRadius: _radius,
                 color: _isEnabled ? widget.onPressColor : null,
@@ -126,7 +134,7 @@ class _TexturedTileButtonState extends State<TexturedTileButton> with TickerProv
   void _onTapDown() {
     setState(() {
       _isEnabled = true;
-      _y = 7;
+      _y = 4;
       _showShadow = false;
     });
   }

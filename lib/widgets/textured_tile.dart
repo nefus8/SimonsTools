@@ -10,6 +10,7 @@ class TexturedTile extends StatelessWidget {
   final String text;
   final TextStyle style;
   final bool boxShadow;
+  final double width, height;
 
   TexturedTile({
     @required this.text,
@@ -26,6 +27,8 @@ class TexturedTile extends StatelessWidget {
       fontSize: 18,
     ),
     this.boxShadow = true,
+    this.width,
+    this.height,
   });
 
   @override
@@ -45,7 +48,8 @@ class TexturedTile extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
-          height: 2000, //high number to get the image to feet the gridview container
+          height: height == null ? double.infinity : height, //high number to get the image to feet the gridview container
+          width: width,
           decoration: BoxDecoration(
             borderRadius: _radius,
             boxShadow: boxShadow
@@ -58,6 +62,8 @@ class TexturedTile extends StatelessWidget {
           ),
         ),
         Container(
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             borderRadius: _radius,
             color: colors.length == 1 ? colors[0] : null,
