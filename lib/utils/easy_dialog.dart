@@ -37,7 +37,7 @@ class EasyDialog {
               // usually buttons at the bottom of the dialog
               new FlatButton(
                 child: new Text('OK',
-                  style: TextStyle(fontSize: 20, color: Colors.white),),
+                  style: TextStyle(fontSize: 20),),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -97,7 +97,7 @@ class EasyDialog {
               // usually buttons at the bottom of the dialog
               new FlatButton(
                 child: new Text(textButton1,
-                  style: TextStyle(fontSize: 20, color: Colors.white),),
+                  style: TextStyle(fontSize: 20),),
                 onPressed: onPressedButton1,
               ),
               new FlatButton(
