@@ -37,7 +37,7 @@ class EasyDialog {
               // usually buttons at the bottom of the dialog
               new FlatButton(
                 child: new Text('OK',
-                  style: TextStyle(fontSize: 20, color: Colors.white),),
+                  style: TextStyle(fontSize: 20),),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -71,7 +71,7 @@ class EasyDialog {
             actions: <Widget>[
               CupertinoDialogAction(
                 child: Text(textButton1, textAlign: TextAlign.justify,),
-                onPressed: onPressedButton1 != null ? onPressedButton1 : () => Navigator.of(context).pop(),
+                onPressed: onPressedButton1,
               ),
               CupertinoDialogAction(
                 child: Text(textButton2, textAlign: TextAlign.justify,),
@@ -97,7 +97,7 @@ class EasyDialog {
               // usually buttons at the bottom of the dialog
               new FlatButton(
                 child: new Text(textButton1,
-                  style: TextStyle(fontSize: 20, color: Colors.white),),
+                  style: TextStyle(fontSize: 20),),
                 onPressed: onPressedButton1,
               ),
               new FlatButton(
