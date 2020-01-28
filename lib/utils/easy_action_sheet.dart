@@ -17,7 +17,7 @@ class EasyActionSheet {
   }) {
     List<Widget> _wList = List();
 
-    if (!Platform.isIOS) {
+    if (Platform.isIOS) {
 
       for (int i = 0; i < numberOfActions; i++) {
         _wList.add(
@@ -69,7 +69,7 @@ class EasyActionSheet {
         );
         _wList.add(new ListTile(
           title: new Text(cancelText, style: TextStyle(color: Colors.red),),
-          onTap: () => _execute(cancelFunction, context),
+          onTap: cancelFunction,
         ));
       }
 
