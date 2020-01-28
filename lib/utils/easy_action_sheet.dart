@@ -37,7 +37,7 @@ class EasyActionSheet {
               actions: _wList,
               cancelButton: isThereACancelButton ? CupertinoActionSheetAction(
                 child: Text(cancelText),
-                onPressed: _execute(actionFunctonList[i], context),
+                onPressed: () => _execute(cancelFunction, context),
                 isDestructiveAction: true,
               ) : null,
             );
@@ -69,7 +69,7 @@ class EasyActionSheet {
         );
         _wList.add(new ListTile(
           title: new Text(cancelText, style: TextStyle(color: Colors.red),),
-          onTap: _execute(actionFunctonList[i], context),
+          onTap: () => _execute(cancelFunction, context),
         ));
       }
 
