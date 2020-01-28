@@ -17,13 +17,13 @@ class EasyActionSheet {
   }) {
     List<Widget> _wList = List();
 
-    if (!Platform.isIOS) {
+    if (Platform.isIOS) {
 
       for (int i = 0; i < numberOfActions; i++) {
         _wList.add(
           CupertinoActionSheetAction(
             child: Text(actionTextList[i]),
-            onPressed: actionFunctonList[i],
+            onPressed: () => _execute(actionFunctonList[i], context),
           ),
         );
       }
@@ -37,7 +37,7 @@ class EasyActionSheet {
               actions: _wList,
               cancelButton: isThereACancelButton ? CupertinoActionSheetAction(
                 child: Text(cancelText),
-                onPressed: cancelFunction,
+                onPressed: () => _execute(cancelFunction, context),
                 isDestructiveAction: true,
               ) : null,
             );
@@ -56,9 +56,21 @@ class EasyActionSheet {
         _wList.add(
           new ListTile(
               title: new Text(actionTextList[i]),
-              onTap: actionFunctonList[i],
+              onTap: () => _execute(actionFunctonList[i], context),
           ),
         );
+      }
+
+      if (isThereACancelButton) {
+        _wList.add(
+          new ListTile(
+            title: new Text(''),
+          ),
+        );
+        _wList.add(new ListTile(
+          title: new Text(cancelText, style: TextStyle(color: Colors.red),),
+          onTap: () => _execute(cancelFunction, context),
+        ));
       }
 
       _wList.add(
@@ -79,5 +91,10 @@ class EasyActionSheet {
           }
       );
     }
+  }
+
+  static void _execute(Function function, BuildContext context) {
+    function();
+    Navigator.pop(context);
   }
 }
