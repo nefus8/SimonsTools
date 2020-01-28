@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class EasyActionSheet {
-  static void _showActionSheet({
+  static void showActionSheet({
     @required BuildContext context,
     int numberOfActions = 1,
     @required title,
