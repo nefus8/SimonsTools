@@ -17,7 +17,7 @@ class EasyActionSheet {
   }) {
     List<Widget> _wList = List();
 
-    if (Platform.isIOS) {
+    if (!Platform.isIOS) {
 
       for (int i = 0; i < numberOfActions; i++) {
         _wList.add(
@@ -37,7 +37,7 @@ class EasyActionSheet {
               actions: _wList,
               cancelButton: isThereACancelButton ? CupertinoActionSheetAction(
                 child: Text(cancelText),
-                onPressed: () => _execute(cancelFunction, context),
+                onPressed: cancelFunction,
                 isDestructiveAction: true,
               ) : null,
             );
