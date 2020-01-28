@@ -19,4 +19,8 @@ class Responsive {
     if (shortestSide > 1530)
       return 3;
   }
+
+  static getDeviceWidth(BuildContext context) {
+    return MediaQuery.of(context).size.shortestSide * MediaQuery.of(context).devicePixelRatio;
+  }
 }
