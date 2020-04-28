@@ -71,7 +71,7 @@ class EasyDialog {
             actions: <Widget>[
               CupertinoDialogAction(
                 child: Text(textButton1, textAlign: TextAlign.justify,),
-                onPressed: onPressedButton1,
+                onPressed: () => _popAndExecuteFunction(onPressedButton1, context),
               ),
               CupertinoDialogAction(
                 child: Text(textButton2, textAlign: TextAlign.justify,),
@@ -98,7 +98,7 @@ class EasyDialog {
               new FlatButton(
                 child: new Text(textButton1,
                   style: TextStyle(fontSize: 20),),
-                onPressed: onPressedButton1,
+                onPressed: () => _popAndExecuteFunction(onPressedButton1, context),
               ),
               new FlatButton(
                 child: new Text(textButton2,
@@ -110,5 +110,10 @@ class EasyDialog {
         },
       );
     }
+  }
+
+  static void _popAndExecuteFunction(Function function, BuildContext context) {
+    Navigator.pop(context);
+    function();
   }
 }
